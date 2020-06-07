@@ -20,6 +20,7 @@ train['category'] = train.apply(lambda row: category[row['item_id']], axis=1)
 train['month'] = train.apply(lambda row: row['date_block_num'] % 12, axis=1)
 train['year'] = train.apply(lambda row: row['date_block_num'] // 12, axis=1)
 
+print(train['category'])
 
 train = train.pivot_table(index=['shop_id', 'category', 'year', 'month'],
                           values='item_cnt_day',

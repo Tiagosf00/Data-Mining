@@ -47,6 +47,10 @@ regressor = RandomForestRegressor(n_estimators=5)
 regressor.fit(train, y_train)
 y_test = regressor.predict(test)
 submission['item_cnt_month'] = y_test
+
+# [0, 20]
+submission['item_cnt_month'] = submission.apply(lambda row: max(0, min(row['item_cnt_month'], 20)), axis=1)
+
 submission.to_csv('submission.csv', index=False)
 
 print('Submission file done.')
